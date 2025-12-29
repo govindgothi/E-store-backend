@@ -1,0 +1,18 @@
+# Dependency folders
+/node_modules
+/vendor
+*.lock
+
+# Build and compilation outputs
+/dist
+/build
+*.o
+*.pyc
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Environment variables and secrets
+.env
+config/secrets.yml
