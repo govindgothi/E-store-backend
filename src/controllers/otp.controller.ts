@@ -11,7 +11,6 @@ export const sendOtp = async (
   next: NextFunction
 ) => {
   try {
-    console.log("000")
     const { OTP_PLATFORM, OTP_TYPE, PHONE, EMAIL }: otpPayload = req.body;
     const result = ValidateOtp.safeParse({
       OTP_PLATFORM,

@@ -29,6 +29,7 @@ export const createCategory = async (
   next: NextFunction
 ) => {
   try {
+    console.time("TOTAL_API");
     const USER_ID: number = req.users.USER_ID;
     let payload = req.body;
     const files:SuccessResponse<Express.Multer.File[]> | CustomError= await uploadFilesService(req)
@@ -38,6 +39,8 @@ export const createCategory = async (
     const data: CreateCategoryPayload = { ...payload, USER_ID };
     const result: CustomError | SuccessResponse<CreateCategoryResponse> =
       await createCategoryService(data,files.data);
+    console.timeEnd("TOTAL_API");
+
     if (result) {
       return res.status(result.statusCode).json(result);
     } else {
@@ -48,9 +51,9 @@ export const createCategory = async (
         );
     }
   } catch (error: any) {
-    // return res
-    //   .status(500)
-    //   .json(new CustomError("Internal server erro", 500, error.message));
+    return res
+      .status(500)
+      .json(new CustomError("Internal server error", 500, error.message));
   }
 };
 // UPDATE CATEGORY

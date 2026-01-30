@@ -4,11 +4,12 @@ import { query } from "./database/mysql";
 import cookieParser from "cookie-parser";
 
 import { errorHandler } from "./utils/errorHandler";
-
+// ---------Routes------------------------------------------------------------------------
 import authRouter from "./routes/auth.routes";
 import otpRouter from "./routes/otp.routes";
+import carouselRouter from "./routes/carousel.routes"
 import categoryRouter from "./routes/category.routes";
-
+// ------------------------------------------------------------------------------------------
 const app = express();
 app.use(express.json());
 app.use(cookieParser()); 
@@ -39,7 +40,9 @@ declare global {
 
 app.use("/users", authRouter);
 app.use("/otp", otpRouter);
+app.use('/carousel',carouselRouter)
 app.use("/category", categoryRouter);
+
 app.use(errorHandler);
 
 export default app;

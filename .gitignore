@@ -1,18 +1,93 @@
-# Dependency folders
-/node_modules
-/vendor
-*.lock
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+!.env.example
 
-# Build and compilation outputs
-/dist
-/build
-*.o
-*.pyc
+# =========================
+# Node modules
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Operating System files
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+out/
+coverage/
+
+# =========================
+# TypeScript
+# =========================
+*.tsbuildinfo
+
+# =========================
+# Uploads / User files
+# =========================
+uploads/
+public/uploads/
+temp/
+tmp/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# Tests
+# =========================
+test/
+tests/
+__tests__/
+*.spec.ts
+*.test.ts
+
+# =========================
+# Database / Dumps
+# =========================
+*.sql
+*.dump
+*.sqlite
+*.db
+
+# =========================
+# Cache / Runtime
+# =========================
+.cache/
+.nyc_output/
+.eslintcache
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS files
+# =========================
 .DS_Store
 Thumbs.db
 
-# Environment variables and secrets
-.env
-config/secrets.yml
+# =========================
+# Docker
+# =========================
+docker-data/
+.docker/
+
+# =========================
+# Misc
+# =========================
+*.pem
+*.key
+*.crt

@@ -8,7 +8,7 @@ const createNewPool = (): void => {
     host: process.env.HOST || "localhost",
     user: process.env.USER || "root",
     password: process.env.PASSWORD || "",
-    database: process.env.DATABASE || "test",
+    database: process.env.DATABASE || "store",
     port: Number(process.env.DB_PORT) || 3306,
     waitForConnections: true,
     connectionLimit: 10,

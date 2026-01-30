@@ -22,7 +22,10 @@ export const createCategoryService = async (payload: CreateCategoryPayload,files
     CATEGORY_NAME,
     CATEGORY_DESCRIPTION,
   });
+  // console.time("CLOUDINARY_ONLY");
   console.log(await uploadMultipleToCloudinary(files,"uploads"))
+  // console.timeEnd("CLOUDINARY_ONLY");
+
   if (!result.success) {
     console.log(result);
     let obj: Record<string, string> = {};
@@ -37,7 +40,7 @@ export const createCategoryService = async (payload: CreateCategoryPayload,files
   const createdCategory = await executeQuery(
     insertCategoryQuery,
     insertCategoryParams
-  );
+  )
   if (createdCategory.affectedRows == 1 && createdCategory.insertId) {
     return new SuccessResponse(201, "Category created succesfully", {
       CATEGORY_ID: createdCategory.insertId,
@@ -45,6 +48,7 @@ export const createCategoryService = async (payload: CreateCategoryPayload,files
   } else {
     return new CustomError("Error while create category", 400);
   }
+
 };
 // UPDATE CATEGORY SERVICE
 export const updateCategoryService = async (payload: UpdateCategoryPayload) => {

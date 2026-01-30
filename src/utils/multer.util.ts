@@ -40,32 +40,6 @@ const fileFilter = (
   }
 };
 
-const limits = {
-  fileSize: 2 * 1024 * 1024, // 2MB
-};
-
-const upload = multer({
-  storage,
-  fileFilter,
-  limits,
-});
-
-
-export const uploadSingle = (fieldName: string) => upload.single(fieldName);
-
-// export const uploadMultiple = (fieldName: string, maxCount = 5) =>
-//   upload.array(fieldName, maxCount);
-
-// export const uploadFields = (fields: { name: string; maxCount: number }[]) =>
-//   upload.fields(fields);
-
-export const removeTempFile = async (filePath: string) => {
-  try {
-    await fs.unlink(filePath);
-  } catch (err) {
-    console.error("Temp file cleanup failed:", err);
-  }
-};
 export const uploadFields = multer({
   storage,
   limits: {
@@ -73,7 +47,7 @@ export const uploadFields = multer({
     files: 15,
   },
 }).fields([
-  { name: "CATEGORY_IMAGE", maxCount: 2 },
+  { name: "CATEGORY_IMAGE", maxCount: 12 },
+   { name: "CAROUSEL_IMAGE", maxCount: 5 },
   { name: "documents", maxCount: 5 },
 ]);
-

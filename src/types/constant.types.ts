@@ -1,5 +1,5 @@
 export interface FileType {
-  fieldname: 'CATEGORY_IMAGE';
+  fieldname: string;
   originalname: string;
   encoding: string;
   mimetype: string;

@@ -11,7 +11,7 @@ cloudinary.config({
   });
 
 
-const limit = pLimit(5); // max 5 concurrent uploads
+const limit = pLimit(15); // max 5 concurrent uploads
 const MAX_FILES = 10;
 
 export const uploadMultipleToCloudinary = async (
@@ -54,3 +54,55 @@ export const uploadMultipleToCloudinary = async (
   // 🚀 parallel execution with controlled concurrency
   return Promise.all(uploadTasks);
 };
+
+// import { v2 as cloudinary } from "cloudinary";
+// import pLimit from "p-limit";
+
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
+//   api_key: process.env.CLOUDINARY_API_KEY!,
+//   api_secret: process.env.CLOUDINARY_API_SECRET!,
+//   secure: true,
+// });
+
+// const limit = pLimit(10); // 🔥 ideal for Cloudinary
+// const MAX_FILES = 10;
+
+// export const uploadMultipleToCloudinary = async (
+//   files: Express.Multer.File[],
+//   folder = "uploads"
+// ) => {
+//   if (!files || files.length === 0) {
+//     throw new Error("No files provided");
+//   }
+
+//   if (files.length > MAX_FILES) {
+//     throw new Error(`Maximum ${MAX_FILES} files allowed`);
+//   }
+
+//   return Promise.all(
+//     files.map((file) =>
+//       limit(
+//         () =>
+//           new Promise((resolve, reject) => {
+//             cloudinary.uploader.upload_stream(
+//               {
+//                 folder,
+//                 resource_type: "auto",
+//               },
+//               (error, result) => {
+//                 if (error) return reject(error);
+
+//                 resolve({
+//                   public_id: result?.public_id,
+//                   secure_url: result?.secure_url,
+//                   format: result?.format,
+//                   bytes: result?.bytes,
+//                 });
+//               }
+//             ).end(file.buffer); // 🚀 NO DISK
+//           })
+//       )
+//     )
+//   );
+// };
